@@ -108,6 +108,33 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    var unique = {};
+    var result = [];
+    var ittArray = [];
+    if (iterator === undefined) {
+      _.each(array, function(item) {
+        unique[item] = item;
+      });
+      var stringArray = Object.keys(unique);
+      _.each(stringArray, function(item) {
+        result.push(parseInt(item));
+      });
+    } else {
+      // for each item in the array, run the iterator function and push result to temp array
+      // iterate over itterated array, and push unique item to uniqueArray, and push the same
+      // index of the original array to the result array
+      // return the result array
+      _.each(array, function(item, index) {
+        ittArray.push(iterator(item));
+      });
+      _.each(ittArray, function(item, index) {
+        if (unique[item] === undefined) {
+          unique[item] = item;
+          result.push(array[index]);
+        }
+      });
+    }
+    return result;
   };
 
 
