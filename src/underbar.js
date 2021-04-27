@@ -140,6 +140,17 @@
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
+    //create a result variable
+    var result = [];
+    //iterate over collection
+    _.each(collection, function(item) {
+      result.push(iterator(item));
+    });
+    //apply iterator to item and push to result(x2)
+    //return result
+    return result;
+
+
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
